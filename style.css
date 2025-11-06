@@ -1,0 +1,62 @@
+:root {
+    --body-background-color: #D7D7D7;
+    --dark-background: #414A67;
+    --body-heading-text: #363D55;
+    --input-outline: #D0D0D0;
+    --button: #587EF4;
+    --red-buttons: #FF465A;
+    --white-text: #FFFFFF;
+}
+
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--body-background-color);
+}
+
+.container{
+    padding: 2em;
+    width: 80vw;
+    height: 40vw;
+    text-align: center;
+}
+
+.container h1, .container h2 {
+    color: var(--body-heading-text);
+}
+
+.container h1{
+    font-size: 8vw;
+    margin: 2vw;
+}
+
+.container h2 {
+    font-size: 5vw;
+    margin: 2vw;
+}
+
+.container input[type = "text"] {
+    border: 1px solid var(--input-outline);
+    width: 50vw;
+    height: 4vw;
+    box-shadow: 1px 1px 1px 1px var(--input-outline);
+    font-size: 2vw;
+}
+
+.container input[type = "submit"] {
+    background-color: var(--button);
+    color: var(--white-text);
+    padding: 2vw;
+    width: 20vw;
+    margin-top: 2vw;
+    border: none;
+    border-radius: 0.5em;
+}
+
+.container input[type = "submit"]:hover {
+    background-color: var(--dark-background);
+    transition: 0.2s ease-in;
+}
