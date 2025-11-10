@@ -1,0 +1,123 @@
+:root {
+    --body-background-color: #D7D7D7;
+    --dark-background: #414A67;
+    --body-heading-text: #363D55;
+    --input-outline: #D0D0D0;
+    --button: #587EF4;
+    --red-buttons: #FF465A;
+    --white-text: #FFFFFF;
+}
+
+body {
+    background-color: var();
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: var(--body-heading-text);
+    color: var(--white-text);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+ul li a {
+    text-decoration: underline;
+    color: var(--white-text);
+    margin-right: 10em;
+    font-size: large;
+}
+
+.timerContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.timerContainer h3 {
+    margin-right: 2em;
+}
+
+.timerContainer input {
+    height: 2em;
+    max-width: min-content;
+    width: 5vw;
+    text-align: center;
+}
+
+.financesSection {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
+.financeContainer {
+    background-color: var(--button);
+    color: var(--white-text);
+    padding: 1em;
+    width: 25%;
+    margin-top: 2em;
+    text-align: left;
+}
+
+@media (MAX-WIDTH: 820px) {
+    ul {
+        flex-direction: column;
+    }
+}
+
+@media (MAX-WIDTH: 600px) {
+    ul {
+        display: none;
+    }
+
+    .financesSection {
+        flex-direction: column;
+    }
+
+    .financeContainer {
+        margin-right: auto;
+        margin-left: auto;
+        width: 90%;
+        text-align: center;
+    }
+}
+
+@media (MAX-WIDTH: 500px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .timerContainer {
+        flex-direction: column;
+    }
+
+    .timerContainer input {
+        width: 5em;
+        margin-bottom: 2em;
+    }
+    
+    .financesSection {
+        flex-direction: column;
+    }
+
+    .financeContainer {
+        margin-right: auto;
+        margin-left: auto;
+        width: 80%;
+    }
+}
