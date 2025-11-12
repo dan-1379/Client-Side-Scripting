@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: var();
+    background-color: var(--body-background-color);
     padding: 0;
     margin: 0;
 }
@@ -71,6 +71,151 @@ ul li a {
     width: 25%;
     margin-top: 2em;
     text-align: left;
+    border-radius: 0.5em;
+}
+
+.financesInput {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.incomeInput, .expenseInput {
+    background-color: var(--white-text);
+    margin-top: 2em;
+    padding: 2em;
+    border-radius: 0.5em;
+}
+
+.incomeInput h2, .expenseInput h2 {
+    color: var(--body-heading-text);
+}
+
+.incomeInput {
+    width: 30%;
+}
+
+.incomeInput input[type = "text"], .incomeInput select {
+    height: 3em;
+    border: 2px solid var(--input-outline);
+}
+
+.incomeInput form {
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+}
+
+.expenseInput {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.expenseInput input[type = "text"], .expenseInput select {
+    height: 3em;
+    width: 50%;
+    border: 2px solid var(--input-outline);
+}
+
+.expenseInput form {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.column {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+form {
+    display: flex;
+}
+
+input[type = "submit"] {
+    background-color: var(--button);
+    color: var(--white-text);
+    padding: 0.5em;
+    width: 40%;
+    align-self: center;
+    border: none;
+    border-radius: 0.5em;
+}
+
+input[type = "submit"]:hover {
+    background-color: var(--dark-background);
+    transition: 0.3s ease-in-out;
+}
+
+.transactionHistory {
+    background-color: var(--white-text);
+    margin-right: auto;
+    margin-left: auto;
+    width: 95%;
+}
+
+.transactionHistory h2 {
+    color: var(--body-heading-text);
+    padding: 2em;
+}
+
+.transactionLog {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+}
+
+table {
+   width: 90%;
+   text-align: center;
+}
+
+table tr {
+    height: 2em;
+}
+
+table th {
+    background-color: var(--dark-background);
+    color: var(--white-text);
+}
+
+table tr:nth-child(odd) {
+    background-color: lightgray;
+}
+
+.filterButton {
+    background-color: var(--button);
+    color: var(--white-text);
+    border: none;
+    padding: 1em;
+    border-radius: 0.3em;
+}
+
+.filterButton:hover {
+    background-color: var(--dark-background);
+    transition: 0.3s ease-in-out;
+}
+
+.reset {
+    text-align: center;
+    margin-top: 3em;
+}
+
+.resetButton {
+    background-color: var(--red-buttons);
+    color: var(--white-text);
+    padding: 2em;
+    width: 30%;
+    border: none;
+    border-radius: 0.5em;
+    margin-bottom: 2em;
+}
+
+.resetButton:hover {
+    background-color: red;
+    transition: 0.5s ease-in-out;
 }
 
 @media (MAX-WIDTH: 820px) {
@@ -93,6 +238,15 @@ ul li a {
         margin-left: auto;
         width: 90%;
         text-align: center;
+    }
+
+    .financesInput {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .incomeInput, .expenseInput {
+        width: 80%;
     }
 }
 
@@ -119,5 +273,25 @@ ul li a {
         margin-right: auto;
         margin-left: auto;
         width: 80%;
+    }
+
+    .transactionLog {
+        flex-direction: column;
+        gap: 2em;
+    }
+
+    table {
+        width: 95%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .filter {
+        align-self: left;
+        margin-left: 1em;
+    }
+
+    .filterButton {
+        width: 25%;
     }
 }

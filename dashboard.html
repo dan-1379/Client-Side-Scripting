@@ -11,8 +11,8 @@
         <h2>Hi, <span>Dan</span>!</h2>
 
         <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Data Analytics</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="analytics.html">Data Analytics</a></li>
         </ul>
 
         <div class="timerContainer">
@@ -39,7 +39,102 @@
             </div>
         </section>
         
-        <section class="financeInput"></section>
+        <section class="financesInput">
+            <div class="incomeInput">
+                <h2>Income</h2>
+
+                <form action="" method="get">
+                    <select name="" id="incomeOptions">
+                        <option value="auto">Enter Income Type</option>
+                        <option value="salary">Salary / Wages</option>
+                        <option value="savings">Savings</option>
+                        <option value="investments">Investments</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <input type="text" name="incomeInput" id="" placeholder="Enter Income">
+
+                    <input type="submit" value="Add Income">
+                </form>
+            </div>
+
+            <div class="expenseInput">
+                <h2>Expenditure</h2>
+
+                <form action="" method="get">
+                    <div class="column">
+                        <select name="" id="expenditureOptions">
+                            <option value="auto">Enter Expense Type</option>
+                            <option value="groceries">Groceries</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="restaurants">Restaurants</option>
+                            <option value="transport">Transport</option>
+                            <option value="health">Health</option>
+                            <option value="travel">Travel</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="Other">Other</option>
+                    </select>
+
+                        <input type="text" name="expenseDate" id="" placeholder="Enter Expense Date">
+                    </div>
+
+                    <div class="column">
+                        <input type="text" name="expenseName" id="" placeholder="Enter Expense Name">
+
+                    <input type="text" name="expenseAmount" id="" placeholder="Enter Expense Amount">
+                    </div>
+
+
+                    <input type="submit" value="Add Expense">
+                </form>
+            </div>
+        </section>
+
+        <section class="transactionHistory">
+            <h2>Transaction History</h2>
+
+            <div class="transactionLog">
+                <div class="filter">
+                    <form action="">
+                        <button class="filterButton">Filter</button>
+                    </form>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Transaction</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Option</th>
+                    </tr>
+
+                    <tr>
+                        <td>Investments</td>
+                        <td>Revolut Savings</td>
+                        <td>$100</td>
+                        <td>Delete</td>
+                    </tr>
+
+                    <tr>
+                        <td>Investments</td>
+                        <td>Revolut Savings</td>
+                        <td>$100</td>
+                        <td>Delete</td>
+                    </tr>
+
+                    <tr>
+                        <td>Investments</td>
+                        <td>Revolut Savings</td>
+                        <td>$100</td>
+                        <td>Delete</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section class="reset">
+            <button class="resetButton">Reset</button>
+        </section>
     </main>
 </body>
 </html>
