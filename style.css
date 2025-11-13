@@ -61,3 +61,8 @@ body{
     background-color: var(--dark-background);
     transition: 0.2s ease-in;
 }
+
+#errorOutput {
+    color: red;
+    font-size: 2vw;
+}

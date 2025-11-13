@@ -154,6 +154,8 @@ input[type = "submit"]:hover {
     margin-right: auto;
     margin-left: auto;
     width: 95%;
+    margin-top: 2em;
+    border-radius: 0.5em;
 }
 
 .transactionHistory h2 {
