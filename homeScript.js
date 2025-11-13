@@ -51,14 +51,3 @@ function removeErrorMessages(parent) {
     */
     parent.innerHTML = "";
 }
-
-
-/*
-JS DASHBOARD FUNCTIONS
-----------------------
-*/
-
-function decrementTimer() {
-    let minutes = 5;
-    let seconds = 60;
-}

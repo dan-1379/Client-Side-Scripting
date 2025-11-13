@@ -172,6 +172,7 @@ input[type = "submit"]:hover {
 table {
    width: 90%;
    text-align: center;
+   overflow: scroll;
 }
 
 table tr {
@@ -295,5 +296,13 @@ table tr:nth-child(odd) {
 
     .filterButton {
         width: 25%;
+    }
+
+    .column {
+        flex-direction: column;
+    }
+
+    .column select, .column input[type = "text"] {
+       width: 90%;
     }
 }

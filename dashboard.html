@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboardStyle.css">
     <title>Budget Tracker Pro Dashboard</title>
+    <script src="dashboard.js" defer></script>
 </head>
 <body>
     <header>
@@ -16,7 +17,7 @@
         </ul>
 
         <div class="timerContainer">
-            <h3>Total Time: <span>5:00</span></h3>
+            <h3>Total Time: <span id="countdownTimer">05:00</span></h3>
         </div>
     </header>
 
@@ -42,7 +43,9 @@
             <div class="incomeInput">
                 <h2>Income</h2>
 
-                <form action="" method="get">
+                <div class="incomeTypeError"></div>
+
+                <form action="" method="get" id="incomeForm">
                     <select name="" id="incomeOptions">
                         <option value="auto">Enter Income Type</option>
                         <option value="salary">Salary / Wages</option>
@@ -60,9 +63,9 @@
             <div class="expenseInput">
                 <h2>Expenditure</h2>
 
-                <form action="" method="get">
+                <form action="" method="get" id="expensesForm">
                     <div class="column">
-                        <select name="" id="expenditureOptions">
+                        <select name="" id="expenditureOptions" required>
                             <option value="auto">Enter Expense Type</option>
                             <option value="groceries">Groceries</option>
                             <option value="shopping">Shopping</option>
@@ -79,8 +82,7 @@
 
                     <div class="column">
                         <input type="text" name="expenseName" id="" placeholder="Enter Expense Name">
-
-                    <input type="text" name="expenseAmount" id="" placeholder="Enter Expense Amount">
+                        <input type="text" name="expenseAmount" id="" placeholder="Enter Expense Amount">
                     </div>
 
 
