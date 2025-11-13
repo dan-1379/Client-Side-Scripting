@@ -221,6 +221,10 @@ table tr:nth-child(odd) {
     transition: 0.5s ease-in-out;
 }
 
+#incomeTypeError {
+    color: red;
+}
+
 @media (MAX-WIDTH: 820px) {
     ul {
         flex-direction: column;

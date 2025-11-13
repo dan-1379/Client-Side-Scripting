@@ -3,6 +3,11 @@ JS DASHBOARD FUNCTIONS
 ----------------------
 */
 
+let incomeForm = document.getElementById("incomeForm");
+let incomeTypeSelect = document.getElementById("incomeOptions");
+let incomeValue = document.getElementById("incomeValue");
+let incomeError = document.getElementById("incomeTypeError");
+
 /*  
     Source - https://stackoverflow.com/a
     Posted by robbmj, modified by community. See post 'Timeline' for change history
@@ -11,8 +16,6 @@ JS DASHBOARD FUNCTIONS
     MODIFIED TO STOP TIMER LOOPING USING:
     https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval#:~:text=The%20setInterval()%20function%20is,the%20interval%20using%20clearInterval()%20.
 */
-
-let incomeTypeSelect = document.getElementById("incomeOptions");
 
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -41,15 +44,76 @@ window.onload = function () {
     startTimer(fiveMinutes, display);
 };
 
-function isValidTypeSelected(selectType) {
-    if (selectType.selectedIndex !== 0) {
-        return true;
-    }
-    return false;
+function constructErrorMessage(error, element) {
+    let para = document.createElement("p");
+    let node = document.createTextNode(error);
+    para.appendChild(node);
+
+    element.appendChild(para);
 }
 
-function isValidAmountEntered() {}
+function removeErrorMessages(parent) {
+    /*
+    REFERENCE THIS LATER - TAKEN FROM W3 SCHOOLS https://www.w3schools.com/jsref/prop_html_innerhtml.asp
+    */
+    parent.innerHTML = "";
+}
+
+incomeForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let incomeType = incomeTypeSelect.value;
+    let incomeAmount = incomeValue.value;
+
+    removeErrorMessages(incomeError);
+    let checkTypeSelected = isValidTypeSelected(incomeType);
+    let checkIncomeEntered = isValidAmountEntered(incomeAmount);
+
+    if (checkTypeSelected !== true) {
+        constructErrorMessage(checkTypeSelected, incomeError);
+        return;
+    }
+
+    if (checkIncomeEntered !== true) {
+        constructErrorMessage(checkIncomeEntered, incomeError);
+        return;
+    }
+
+    /*
+        SUCCESS - ADD NEW TABLE RECORD
+    */
+})
+
+function isValidTypeSelected(selectType) {
+    if (selectType === "auto") {
+        return "Please select a valid option"
+    }
+
+    return true;
+}
+
+function isValidAmountEntered(amt) {
+    if (amt.trim() === "") {
+        return "Income amount cannot be blank"
+    }
+
+    let num = Number(amt);
+
+    if (isNaN(num)) {
+        return "This is not a valid income number";
+    }
+
+    if (num < 0 || num > 1000000) {
+        return "Not a valid income amount. Must be in the range 1 - 1000000 inclusive"
+    }
+
+    return true;
+}
 
 function isValidDateEntered() {}
 
 function isValidNameEntered() {}
+
+function addTableRecord() {
+
+}
