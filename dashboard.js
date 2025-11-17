@@ -1,12 +1,30 @@
-/*
-JS DASHBOARD FUNCTIONS
-----------------------
-*/
+// MAIN DASHBOARD FIGURES
+let totalIncome = 0;
+let totalIncomeValue = document.getElementById("totalIncomeValue");
 
+let totalExpenses = 0;
+let totalExpensesValue = document.getElementById("totalExpensesValue");
+
+let remainingBalance = 0;
+let remainingBalanceValue = document.getElementById("remainingBalanceValue");
+
+// INCOME FORM ELEMENTS
 let incomeForm = document.getElementById("incomeForm");
 let incomeTypeSelect = document.getElementById("incomeOptions");
 let incomeValue = document.getElementById("incomeValue");
 let incomeError = document.getElementById("incomeTypeError");
+
+// EXPENDITURE FORM ELEMENTS
+let expenseForm = document.getElementById("expensesForm");
+let expenseTypeSelect = document.getElementById("expenditureOptions");
+let expenseDate = document.getElementById("expenseDate");
+let expenseName = document.getElementById("expenseName");
+let expenseValue = document.getElementById("expenseAmount");
+let expenseError = document.getElementById("expenseTypeError");
+
+// TABLE ELEMENTS
+const table = document.getElementById("transactionTable");
+let transactionRecords = [];
 
 /*  
     Source - https://stackoverflow.com/a
@@ -59,11 +77,13 @@ function removeErrorMessages(parent) {
     parent.innerHTML = "";
 }
 
+// INCOME FORM
 incomeForm.addEventListener("submit", function(e) {
     e.preventDefault();
 
     let incomeType = incomeTypeSelect.value;
     let incomeAmount = incomeValue.value;
+    let transaction = "Income";
 
     removeErrorMessages(incomeError);
     let checkTypeSelected = isValidTypeSelected(incomeType);
@@ -79,10 +99,65 @@ incomeForm.addEventListener("submit", function(e) {
         return;
     }
 
+    incomeAmount = Number(incomeAmount);
     /*
         SUCCESS - ADD NEW TABLE RECORD
     */
-})
+    let delButton = document.createElement("button");
+    insertTableRecord(transaction, incomeType, incomeAmount, delButton);
+    updateTotalIncome(incomeAmount);
+    updateRemainingBalance();
+    
+    incomeForm.reset();
+});
+
+// EXPENSE FORM
+expenseForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let expenseTypeValue = expenseTypeSelect.value;
+    let expenseDateValue = expenseDate.value;
+    let expenseNameValue = expenseName.value;
+    let expenseAmountValue = expenseValue.value;
+    let transaction = "Expenditure";
+
+    removeErrorMessages(expenseError);
+    let checkExpenseSelected = isValidTypeSelected(expenseTypeValue);
+    let checkDateEntered = isValidDateEntered(expenseDateValue);
+    let checkNameEntered = isValidNameEntered(expenseNameValue);
+    let checkExpenseEntered = isValidAmountEntered(expenseAmountValue);
+
+    if (checkExpenseSelected !== true) {
+        constructErrorMessage(checkExpenseSelected, expenseError);
+        return;
+    }
+
+    if (checkDateEntered !== true) {
+        constructErrorMessage(checkDateEntered, expenseError);
+        return;
+    }
+
+    if (checkNameEntered !== true) {
+        constructErrorMessage(checkNameEntered, expenseError);
+        return;
+    }
+
+    if (checkExpenseEntered !== true) {
+        constructErrorMessage(checkExpenseEntered, expenseError);
+        return;
+    }
+
+    expenseAmountValue = Number(expenseAmountValue);
+    /*
+        SUCCESS - ADD NEW TABLE RECORD
+    */
+    let delButton = document.createElement("button");
+    insertTableRecord(transaction, expenseTypeValue, expenseAmountValue, delButton);
+    updateTotalExpenses(expenseAmountValue);
+    updateRemainingBalance();
+
+    expenseForm.reset();
+});
 
 function isValidTypeSelected(selectType) {
     if (selectType === "auto") {
@@ -110,10 +185,104 @@ function isValidAmountEntered(amt) {
     return true;
 }
 
-function isValidDateEntered() {}
+function isValidDateEntered(date) {
+    if (date.trim() == "") {
+        return "Please enter a value for the date";
+    }
 
-function isValidNameEntered() {}
+    if (date.length != 8) {
+        return "Date value must be 8 characters in the form DD/MM/YY";
+    }
 
-function addTableRecord() {
+    let dashCount = 0;
 
+    for (let i = 0; i < date.length; i++) {
+        if (date[i] === "/") {
+            dashCount++;
+        }
+    }
+
+    if (dashCount != 2) {
+        return "Date value must be in the form DD/MM/YY separated by a backslash";
+    }
+
+    /* https://www.w3schools.com/jsref/jsref_substring.asp */
+    let dateArray = [];
+    
+    let day = date.substring(0, 2);
+    let month = date.substring(3, 5);
+    let year = date.substring(6);
+
+    dateArray.push(day, month, year);
+    let valid = true;
+    
+    dateArray.forEach(element => {
+        let checkSection = isValidDateSection(element);
+
+        if (checkSection !== true) {
+            valid = false;
+        }
+    });
+
+    if (valid == false) {
+       return "Not a valid date!";
+    }
+
+    return true;
+}
+
+function isValidNameEntered(name) {
+    if (name.trim() === "") {
+        return "Name of the expenditure cannot be blank";
+    }
+
+    if (name.length >= 1 && name.length <= 3) {
+        return "Nice try. Please use a more descriptive name";
+    }
+
+    return true;
+}
+
+function isValidDateSection(section) {
+    for (let i = 0; i < section.length; i++) {
+        if (section[i] < '0' || section[i] > '9') {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function insertTableRecord(transaction, type, amt, delButton) {
+    transactionRecords.push(transaction, type, amt, delButton);
+    console.log(transactionRecords);
+    
+    let record = document.createElement("tr");
+
+    record.innerHTML = `
+            <td>${transaction}</td>
+            <td>${type}</td>
+            <td>€${amt}</td>
+            <td></td>`;
+
+    delButton.textContent = "Delete";
+    record.lastElementChild.appendChild(delButton);
+
+    delButton.addEventListener("click", function(e) {
+        record.remove();
+    });
+
+    table.appendChild(record);
+}
+
+function updateTotalIncome(amt) {
+    totalIncomeValue.textContent =  `€${Number(totalIncome = totalIncome + amt)}`;
+}
+
+function updateTotalExpenses(amt) {
+    totalExpensesValue.textContent =  `€${Number(totalExpenses = totalExpenses + amt)}`;
+}
+
+function updateRemainingBalance() {
+    remainingBalanceValue.textContent = `€${Number(totalIncome - totalExpenses)}`;
 }

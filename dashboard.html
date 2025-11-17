@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboardStyle.css">
-    <title>Budget Tracker Pro Dashboard</title>
+    <title>Budget Manager Pro Dashboard</title>
     <script src="dashboard.js" defer></script>
 </head>
 <body>
@@ -25,17 +25,17 @@
         <section class = "financesSection">
             <div class="financeContainer">
                 <h2>Total Income</h2>
-                <h3>€ 4,785.25</h3>
+                <h3 id="totalIncomeValue">€0</h3>
             </div>
 
             <div class="financeContainer">
                 <h2>Total Expenses</h2>
-                <h3>€ 2,485.96</h3>
+                <h3 id="totalExpensesValue">€0</h3>
             </div>
 
             <div class="financeContainer">
                 <h2>Remaining Balance</h2>
-                <h3>€ 2,299.29</h3>
+                <h3 id="remainingBalanceValue">€0</h3>
             </div>
         </section>
         
@@ -48,10 +48,10 @@
                 <form action="" method="get" id="incomeForm">
                     <select name="" id="incomeOptions">
                         <option value="auto">Enter Income Type</option>
-                        <option value="salary">Salary / Wages</option>
-                        <option value="savings">Savings</option>
-                        <option value="investments">Investments</option>
-                        <option value="other">Other</option>
+                        <option value="Salary">Salary / Wages</option>
+                        <option value="Savings">Savings</option>
+                        <option value="Investments">Investments</option>
+                        <option value="Other">Other</option>
                     </select>
 
                     <input type="text" name="incomeInput" id="incomeValue" placeholder="Enter Income">
@@ -63,26 +63,27 @@
             <div class="expenseInput">
                 <h2>Expenditure</h2>
 
+                <div id="expenseTypeError"></div>
+
                 <form action="" method="get" id="expensesForm">
                     <div class="column">
                         <select name="" id="expenditureOptions" required>
                             <option value="auto">Enter Expense Type</option>
-                            <option value="groceries">Groceries</option>
-                            <option value="shopping">Shopping</option>
-                            <option value="restaurants">Restaurants</option>
-                            <option value="transport">Transport</option>
-                            <option value="health">Health</option>
-                            <option value="travel">Travel</option>
-                            <option value="entertainment">Entertainment</option>
+                            <option value="Groceries">Groceries</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Restaurants">Restaurants</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Health">Health</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Entertainment">Entertainment</option>
                             <option value="Other">Other</option>
                     </select>
-
-                        <input type="text" name="expenseDate" id="" placeholder="Enter Expense Date">
+                        <input type="text" name="expenseDate" id="expenseDate" placeholder="Enter Expense Date DD/MM/YY">
                     </div>
 
                     <div class="column">
-                        <input type="text" name="expenseName" id="" placeholder="Enter Expense Name">
-                        <input type="text" name="expenseAmount" id="" placeholder="Enter Expense Amount">
+                        <input type="text" name="expenseName" id="expenseName" placeholder="Enter Expense Name">
+                        <input type="text" name="expenseAmount" id="expenseAmount" placeholder="Enter Expense Amount">
                     </div>
 
 
@@ -101,19 +102,12 @@
                     </form>
                 </div>
 
-                <table>
+                <table id="transactionTable">
                     <tr>
                         <th>Transaction</th>
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Option</th>
-                    </tr>
-
-                    <tr>
-                        <td>Investments</td>
-                        <td>Revolut Savings</td>
-                        <td>$100</td>
-                        <td>Delete</td>
                     </tr>
                 </table>
             </div>

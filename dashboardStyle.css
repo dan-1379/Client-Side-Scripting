@@ -156,6 +156,7 @@ input[type = "submit"]:hover {
     width: 95%;
     margin-top: 2em;
     border-radius: 0.5em;
+    padding-bottom: 2em;
 }
 
 .transactionHistory h2 {
@@ -186,6 +187,12 @@ table th {
 
 table tr:nth-child(odd) {
     background-color: lightgray;
+}
+
+table button {
+    background-color: var(--white-text);
+    color: black;
+    border: none;
 }
 
 .filterButton {
@@ -221,7 +228,7 @@ table tr:nth-child(odd) {
     transition: 0.5s ease-in-out;
 }
 
-#incomeTypeError {
+#incomeTypeError, #expenseTypeError {
     color: red;
 }
 
