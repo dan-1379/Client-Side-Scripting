@@ -1,3 +1,8 @@
+// GETTING THE USERS NAME
+const name = localStorage.getItem("User_Name");
+const displayName = document.getElementById("userNameDisplay");
+displayName.textContent = name;
+
 // MAIN DASHBOARD FIGURES
 let totalIncome = 0;
 let totalIncomeValue = document.getElementById("totalIncomeValue");
@@ -22,9 +27,24 @@ let expenseName = document.getElementById("expenseName");
 let expenseValue = document.getElementById("expenseAmount");
 let expenseError = document.getElementById("expenseTypeError");
 
+// FILTER BUTTON ELEMENTS
+let filterButton = document.getElementById("filterButton");
+let filter = document.getElementById("filterSelect");
+// https://stackoverflow.com/questions/13688238/javascript-style-display-none-or-jquery-hide-is-more-efficient
+filter.style.display = "none";
+
+let typeFilter = document.getElementById("typeFieldset");
+typeFilter.style.display = "none";
+
+let costFilter = document.getElementById("costFieldset");
+costFilter.style.display = "none";
+
 // TABLE ELEMENTS
-const table = document.getElementById("transactionTable");
+let table = document.getElementById("transactionTable");
 let transactionRecords = [];
+
+// RESET BUTTON
+let reset = document.getElementById("resetButton");
 
 /*  
     Source - https://stackoverflow.com/a
@@ -254,35 +274,99 @@ function isValidDateSection(section) {
 }
 
 function insertTableRecord(transaction, type, amt, delButton) {
-    transactionRecords.push(transaction, type, amt, delButton);
+    transactionRecords.push({t : transaction, tp : type, a : amt, dl : delButton});
     console.log(transactionRecords);
-    
-    let record = document.createElement("tr");
 
-    record.innerHTML = `
-            <td>${transaction}</td>
-            <td>${type}</td>
-            <td>€${amt}</td>
+    updateTableRecords();
+    updateLocalStorage();
+}
+
+function updateTableRecords() {
+    table.innerHTML = `<tr>
+                        <th>Transaction</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Option</th>
+                    </tr>`;
+
+    let arrayLen = transactionRecords.length;
+
+    for (let i = 0; i < arrayLen; i++) {
+        let record = document.createElement("tr");
+
+        record.innerHTML = `
+            <td>${transactionRecords[i].t}</td>
+            <td>${transactionRecords[i].tp}</td>
+            <td>€${transactionRecords[i].a}</td>
             <td></td>`;
 
-    delButton.textContent = "Delete";
-    record.lastElementChild.appendChild(delButton);
+        let delButton = transactionRecords[i].dl;
+        delButton.textContent = "Delete";
+        record.lastElementChild.appendChild(delButton);
 
-    delButton.addEventListener("click", function(e) {
-        record.remove();
-    });
+        delButton.addEventListener("click", function(e) {
+            if (transactionRecords[i].t === "Income") {
+                decreaseTotalIncome(transactionRecords[i].a);
+            } else if (transactionRecords[i].t === "Expenditure") {
+                decreaseTotalExpenses(transactionRecords[i].a);
+            }
 
-    table.appendChild(record);
+            updateRemainingBalance();
+            
+            transactionRecords.splice(i, 1);
+            updateTableRecords();
+        });
+
+        table.appendChild(record);
+    }
+}
+
+function updateLocalStorage() {
+    localStorage.setItem("User_Transactions", JSON.stringify(transactionRecords));
 }
 
 function updateTotalIncome(amt) {
     totalIncomeValue.textContent =  `€${Number(totalIncome = totalIncome + amt)}`;
 }
 
+function decreaseTotalIncome(amt) {
+    totalIncomeValue.textContent =  `€${Number(totalIncome = totalIncome - amt)}`;
+}
+
 function updateTotalExpenses(amt) {
     totalExpensesValue.textContent =  `€${Number(totalExpenses = totalExpenses + amt)}`;
+}
+
+function decreaseTotalExpenses(amt) {
+    totalExpensesValue.textContent =  `€${Number(totalExpenses = totalExpenses - amt)}`;
 }
 
 function updateRemainingBalance() {
     remainingBalanceValue.textContent = `€${Number(totalIncome - totalExpenses)}`;
 }
+
+reset.addEventListener("click", function(e){
+   transactionRecords = [];
+   updateTableRecords();
+
+   localStorage.removeItem("User_Transactions", JSON.stringify(transactionRecords));
+});
+
+filterButton.addEventListener("click", function() {
+    if (filter.style.display == "block") {
+        filter.style.display = "none"
+    } else {
+        filter.style.display = "block"
+    }
+});
+
+filter.addEventListener("change", function(){
+    typeFilter.style.display = "none";
+    costFilter.style.display = "none";
+    
+    if (filter.value == "type") {
+        typeFilter.style.display = "block";
+    } else if (filter.value == "price") {
+        costFilter.style.display = "block";
+    }
+});

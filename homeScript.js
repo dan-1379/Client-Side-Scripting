@@ -18,11 +18,12 @@ homeForm.addEventListener("submit", function(e) {
         constructErrorMessage(checkValid, errorDiv);
         return;
     }
-    
+
     /* 
     https://stackoverflow.com/questions/38338144/how-can-i-make-a-button-redirect-my-page-to-another-page-using-addeventlistener
     */
     document.location.href = "dashboard.html";
+    let user_name = localStorage.setItem("User_Name", nameInput.value);
 });
 
 function isValidInput(inputType) {

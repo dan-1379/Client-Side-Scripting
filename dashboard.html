@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h2>Hi, <span>Dan</span>!</h2>
+        <h2>Hi, <span id="userNameDisplay"></span>!</h2>
 
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -95,26 +95,56 @@
         <section class="transactionHistory">
             <h2>Transaction History</h2>
 
-            <div class="transactionLog">
-                <div class="filter">
-                    <form action="">
-                        <button class="filterButton">Filter</button>
-                    </form>
+            <div class="filter">
+                <div class="filter-Button">
+                    <button class="filterButton" id="filterButton">Filter</button>
                 </div>
 
-                <table id="transactionTable">
-                    <tr>
-                        <th>Transaction</th>
-                        <th>Name</th>
-                        <th>Amount</th>
-                        <th>Option</th>
-                    </tr>
-                </table>
+                <div class="filterOption">
+                    <select name="" id="filterSelect" class="filterSelect">
+                        <option value="auto">Select an Option</option>
+                        <option value="type">Expense Type</option>
+                        <option value="price">Price</option>
+                    </select>
+                </div>
+
+                <div class="filterBy">
+                    <form action="">
+                        <fieldset id="typeFieldset">
+                            <legend>Expense Type</legend>
+                            <input type="radio" name="transaction_type" id="income_transaction" value="income">
+                            <label for="income_transaction">Income</label><br>
+
+                            <input type="radio" name="transaction_type" id="expense_transaction" value="Expenditure">
+                            <label for="expense_transaction">Expenditure</label><br>
+                        </fieldset>
+                    </form>
+
+                    <fieldset id="costFieldset">
+                        <legend>Cost Price</legend>
+                        <input type="radio" name="sort_transaction" id="highest_transaction" value="highest">
+                        <label for="highest_transaction">High - Low</label><br>
+
+                        <input type="radio" name="sort_transaction" id="lowest_transaction" value="lowest">
+                        <label for="expense_transaction">Low - High</label><br>
+                    </fieldset>
+                </div>
             </div>
+
+                <div class="transactionLog">
+                    <table id="transactionTable">
+                        <tr>
+                            <th>Transaction</th>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Option</th>
+                        </tr>
+                    </table>
+                </div>
         </section>
 
         <section class="reset">
-            <button class="resetButton">Reset</button>
+            <button class="resetButton" id="resetButton">Reset</button>
         </section>
     </main>
 </body>

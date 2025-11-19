@@ -112,7 +112,7 @@ ul li a {
     flex-direction: column;
 }
 
-.expenseInput input[type = "text"], .expenseInput select {
+.expenseInput input[type = "text"], .expenseInput select, .filterSelect {
     height: 3em;
     width: 50%;
     border: 2px solid var(--input-outline);
@@ -201,11 +201,26 @@ table button {
     border: none;
     padding: 1em;
     border-radius: 0.3em;
+    margin-left: 4em;
+    width: 10%;
 }
 
 .filterButton:hover {
     background-color: var(--dark-background);
     transition: 0.3s ease-in-out;
+}
+
+.filterOption select {
+    padding: 0.5em;
+    margin-left: 4em;
+    margin-top: 1em;
+}
+
+fieldset {
+    margin-top: 1em;
+    width: 80%;
+    margin-left: 4em;
+    margin-bottom: 1em;
 }
 
 .reset {
@@ -302,11 +317,18 @@ table button {
 
     .filter {
         align-self: left;
-        margin-left: 1em;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    fieldset, .filterOption select {
+        margin: 0;
     }
 
     .filterButton {
-        width: 25%;
+        width: 55%;
+        margin: 0;
     }
 
     .column {
