@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Budget Manager Pro Dashboard</title>
     <script src="dashboard.js" defer></script>
 </head>
+
 <body>
     <header>
         <h2>Hi, <span id="userNameDisplay"></span>!</h2>
@@ -22,7 +24,7 @@
     </header>
 
     <main>
-        <section class = "financesSection">
+        <section class="financesSection">
             <div class="financeContainer">
                 <h2>Total Income</h2>
                 <h3 id="totalIncomeValue">€0</h3>
@@ -38,7 +40,7 @@
                 <h3 id="remainingBalanceValue">€0</h3>
             </div>
         </section>
-        
+
         <section class="financesInput">
             <div class="incomeInput">
                 <h2>Income</h2>
@@ -77,8 +79,9 @@
                             <option value="Travel">Travel</option>
                             <option value="Entertainment">Entertainment</option>
                             <option value="Other">Other</option>
-                    </select>
-                        <input type="text" name="expenseDate" id="expenseDate" placeholder="Enter Expense Date DD/MM/YY">
+                        </select>
+                        <input type="text" name="expenseDate" id="expenseDate"
+                            placeholder="Enter Expense Date DD/MM/YY">
                     </div>
 
                     <div class="column">
@@ -115,7 +118,7 @@
                             <input type="radio" name="transaction_type" id="income_transaction" value="income">
                             <label for="income_transaction">Income</label><br>
 
-                            <input type="radio" name="transaction_type" id="expense_transaction" value="Expenditure">
+                            <input type="radio" name="transaction_type" id="expense_transaction" value="expenditure">
                             <label for="expense_transaction">Expenditure</label><br>
                         </fieldset>
                     </form>
@@ -131,16 +134,16 @@
                 </div>
             </div>
 
-                <div class="transactionLog">
-                    <table id="transactionTable">
-                        <tr>
-                            <th>Transaction</th>
-                            <th>Name</th>
-                            <th>Amount</th>
-                            <th>Option</th>
-                        </tr>
-                    </table>
-                </div>
+            <div class="transactionLog">
+                <table id="transactionTable">
+                    <tr>
+                        <th>Transaction</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Option</th>
+                    </tr>
+                </table>
+            </div>
         </section>
 
         <section class="reset">
@@ -148,4 +151,5 @@
         </section>
     </main>
 </body>
+
 </html>

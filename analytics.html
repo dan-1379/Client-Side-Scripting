@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="dashboardStyle.css">
+    <script src="dashboard.js" defer></script>
 </head>
+
 <body>
     <header>
-        <h2>Hi, <span>Dan</span>!</h2>
+        <h2>Hi, <span id="userNameDisplay"></span>!</h2>
 
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="dashboard.html">Data Analytics</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
         </ul>
 
         <div class="timerContainer">
-            <h3>Total Time:</h3>
-            <input type="text" placeholder="0:00">
+            <h3>Total Time: <span id="countdownTimer">05:00</span></h3>
         </div>
     </header>
 </body>
+
 </html>
