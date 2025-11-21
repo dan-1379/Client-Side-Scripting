@@ -77,9 +77,9 @@ function startTimer(duration, display) {
             clearInterval(countdown);
             display.textContent = "00:00";
             localStorage.removeItem("Time_Remaining");
+        } else {
+            localStorage.setItem("Time_Remaining", timer);
         }
-
-        localStorage.setItem("Time_Remaining", timer);
     }, 1000);
 }
 
@@ -343,6 +343,8 @@ function updateTableRecords() {
             updateRemainingBalance();
 
             transactionRecords.splice(i, 1);
+
+            updateLocalStorage();
             updateTableRecords();
         });
 
@@ -353,6 +355,7 @@ function updateTableRecords() {
 
 // LOCAL STORAGE
 const updateLocalStorage = () => localStorage.setItem("User_Transactions", JSON.stringify(transactionRecords));
+const resetLocalStorage = () => localStorage.setItem(("Time_Remaining", 0))
 
 // TOTAL INCOME
 const updateTotalIncome = (amt) => totalIncomeValue.textContent = `€${Number(totalIncome = totalIncome + amt)}`;
@@ -383,6 +386,13 @@ reset.addEventListener("click", function (e) {
 });
 
 filterButton.addEventListener("click", function () {
+    filter.value = "auto";
+    typeFilter.style.display = "none";
+    costFilter.style.display = "none";
+
+    typeSelectionRadio.forEach(record => record.checked = false);
+    priceSelectionRadio.forEach(record => record.checked = false);
+
     if (filter.style.display == "block") {
         filter.style.display = "none"
     } else {
@@ -391,14 +401,15 @@ filterButton.addEventListener("click", function () {
 });
 
 filter.addEventListener("change", function () {
-    typeFilter.style.display = "none";
-    costFilter.style.display = "none";
-
     if (filter.value == "type") {
         typeFilter.style.display = "block";
+        costFilter.style.display = "none";
     } else if (filter.value == "price") {
         costFilter.style.display = "block";
+        typeFilter.style.display = "none";
     } else {
+        typeFilter.style.display = "none";
+        costFilter.style.display = "none";
         updateTableRecords();
     }
 });
