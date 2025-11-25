@@ -33,10 +33,16 @@ header {
 }
 
 .headerMenu li a {
-    text-decoration: underline;
+    text-decoration: none;
     color: var(--white-text);
     margin-right: 10em;
     font-size: large;
+}
+
+.headerMenu li a:hover {
+    text-decoration: underline;
+    color: var(--input-outline);
+    transition: 0.5s ease-in-out;
 }
 
 .timerContainer {
@@ -111,6 +117,7 @@ header {
 .incomeInput input[type = "text"], .incomeInput select {
     height: 3em;
     border: 2px solid var(--input-outline);
+    font-size: 16px;
 }
 
 .incomeInput form {
@@ -131,6 +138,7 @@ header {
     height: 3em;
     width: 50%;
     border: 2px solid var(--input-outline);
+    font-size: 16px;
 }
 
 .filterSelect {
@@ -161,6 +169,7 @@ input[type = "submit"] {
     align-self: center;
     border: none;
     border-radius: 0.5em;
+    font-size: 1em;
 }
 
 input[type = "submit"]:hover {
@@ -196,6 +205,7 @@ table {
    width: 90%;
    text-align: center;
    overflow: scroll;
+   font-size: 1em;
 }
 
 table tr {
@@ -212,9 +222,17 @@ table tr:nth-child(odd) {
 }
 
 table button {
-    background-color: var(--white-text);
+    background-color: transparent;
     color: black;
     border: none;
+    font-size: 1em;
+}
+
+table button:hover {
+    background-color: var(--red-buttons);
+    color: var(--white-text);
+    border-radius: 0.5em;
+    transition: 0.5s ease-in-out;
 }
 
 .filterButton {
@@ -226,6 +244,7 @@ table button {
     margin-left: 4em;
     margin-bottom: 2em;
     width: 10%;
+    font-size: 1em;
 }
 
 .filterButton:hover {
@@ -272,6 +291,36 @@ fieldset {
     color: red;
 }
 
+.githubLink {
+    background-color: var(--body-heading-text);
+    padding: 2em;
+   text-align: left;
+}
+
+.githubLink button {
+    background-color: var(--white-text);
+    padding: 0.5em;
+    border-radius: 0.3em;
+    width: 15vw;
+    text-align: center;
+}
+
+.githubLink button a {
+    text-decoration: none;
+    color: var(--dark-background);
+}
+
+.githubLink button a:hover {
+    color: var(--button);
+    transition: 0.2s ease-in-out;
+}
+
+.githubLink p {
+    color: var(--white-text);
+    margin-top: 2em;
+}
+
+
 @media (MAX-WIDTH: 820px) {
     .headerMenu {
         flex-direction: column;
@@ -280,6 +329,10 @@ fieldset {
     .burgerMenu ul {
         display: block;
         flex-direction: row;
+    }
+
+    .githubLink {
+       text-align: center;
     }
 }
 
@@ -385,5 +438,9 @@ fieldset {
 
     .column select, .column input[type = "text"] {
        width: 90%;
+    }
+
+    .githubText{
+       display: none;
     }
 }

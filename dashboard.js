@@ -89,7 +89,7 @@ window.onload = function () {
     // startTimer(fiveMinutes, display);
 
     let savedRecords = localStorage.getItem("User_Transactions");
-    let savedTime = this.localStorage.getItem("Time_Remaining");
+    let savedTime = localStorage.getItem("Time_Remaining");
 
     if (savedRecords) {
         transactionRecords = JSON.parse(savedRecords);
