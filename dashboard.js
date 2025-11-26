@@ -1,5 +1,15 @@
 const currentPage = document.body.dataset.page;
 
+/*******************************************************************************
+ * Title: How to write a countdown timer in JavaScript?
+ * Author: Bartek
+ * Site: stackoverflow.com
+ * Date: 2013
+ * Code Version: edited Mar 11, 2021 at 22:06
+ * Availability: https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
+ * Accessed: 26 November 2025
+ * Modified: Function to decrement timer. No modifications made.
+ *******************************************************************************/
 function startTimer(duration, display) {
         var timer = duration, minutes, seconds;
 
@@ -24,6 +34,7 @@ function startTimer(duration, display) {
             }
         }, 1000);
     }
+/** END OF REFERENCED CONTENT */
 
 if (currentPage === "index") {    
     const homeForm = document.getElementById("beginForm");
@@ -42,9 +53,7 @@ if (currentPage === "index") {
             return;
         }
 
-        /* 
-        https://stackoverflow.com/questions/38338144/how-can-i-make-a-button-redirect-my-page-to-another-page-using-addeventlistener
-        */
+        /* https://stackoverflow.com/questions/38338144/how-can-i-make-a-button-redirect-my-page-to-another-page-using-addeventlistener */
         document.location.href = "dashboard.html";
         let user_name = localStorage.setItem("User_Name", nameInput.value);
     });
@@ -70,11 +79,10 @@ if (currentPage === "index") {
     }
 
     function removeErrorMessages(parent) {
-        /*
-        REFERENCE THIS LATER - TAKEN FROM W3 SCHOOLS https://www.w3schools.com/jsref/prop_html_innerhtml.asp
-        */
+        /* https://www.w3schools.com/jsref/prop_html_innerhtml.asp */
         parent.innerHTML = "";
     }
+
 } else if (currentPage === "dashboard") {
     // GETTING THE USERS NAME
     const userName = localStorage.getItem("User_Name");
@@ -108,6 +116,7 @@ if (currentPage === "index") {
     // FILTER BUTTON ELEMENTS
     let filterButton = document.getElementById("filterButton");
     let filter = document.getElementById("filterSelect");
+
     // https://stackoverflow.com/questions/13688238/javascript-style-display-none-or-jquery-hide-is-more-efficient
     filter.style.display = "none";
 
@@ -128,43 +137,20 @@ if (currentPage === "index") {
     // RESET BUTTON
     let reset = document.getElementById("resetButton");
 
-    /*  
-        Source - https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
-        Posted by robbmj, modified by community. See post 'Timeline' for change history
-        Retrieved 2025-11-13, License - CC BY-SA 4.0
-
-        MODIFIED TO STOP TIMER LOOPING USING:
-        https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval#:~:text=The%20setInterval()%20function%20is,the%20interval%20using%20clearInterval()%20.
-    */
-
-    // function startTimer(duration, display) {
-    //     var timer = duration, minutes, seconds;
-
-    //     let countdown = setInterval(function () {
-    //         minutes = parseInt(timer / 60, 10);
-    //         seconds = parseInt(timer % 60, 10);
-
-    //         minutes = minutes < 10 ? "0" + minutes : minutes;
-    //         seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    //         display.textContent = minutes + ":" + seconds;
-
-    //         timer--;
-
-    //         if (timer < 0) {
-    //             clearInterval(countdown);
-    //             display.textContent = "00:00";
-    //             localStorage.removeItem("Time_Remaining");
-    //         } else {
-    //             localStorage.setItem("Time_Remaining", timer);
-    //         }
-    //     }, 1000);
-    // }
-
     window.onload = function () {
-        var fiveMinutes = 60 * 5,
-            display = document.querySelector('#countdownTimer');
-        // startTimer(fiveMinutes, display);
+        /*******************************************************************************
+         * Title: How to write a countdown timer in JavaScript?
+         * Author: Bartek
+         * Site: stackoverflow.com
+         * Date: 2013
+         * Code Version: edited Mar 11, 2021 at 22:06
+         * Availability: https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
+         * Accessed: 26 November 2025
+         * Modified: Function to decrement timer. No modifications made.
+         *******************************************************************************/
+        var fiveMinutes = 60 * 5, display = document.querySelector('#countdownTimer');
+
+        /** END OF REFERENCED CONTENT */
 
         let savedRecords = localStorage.getItem("User_Transactions");
         let savedTime = localStorage.getItem("Time_Remaining");
@@ -200,9 +186,7 @@ if (currentPage === "index") {
     }
 
     function removeErrorMessages(parent) {
-        /*
-        REFERENCE THIS LATER - TAKEN FROM W3 SCHOOLS https://www.w3schools.com/jsref/prop_html_innerhtml.asp
-        */
+        /* https://www.w3schools.com/jsref/prop_html_innerhtml.asp */
         parent.innerHTML = "";
     }
 
@@ -228,14 +212,14 @@ if (currentPage === "index") {
             return;
         }
 
-        incomeAmount = Number(incomeAmount);
-        /*
-            SUCCESS - ADD NEW TABLE RECORD
-        */
+        incomeAmount = Number(incomeAmount); // Assuming the user has entered a valid number based on validation tests passing.
+
+        /* SUCCESS - ADD NEW TABLE RECORD */
         insertTableRecord(transaction, incomeType, incomeAmount);
         updateTotalIncome(incomeAmount);
         updateRemainingBalance();
 
+        // https://www.w3schools.com/jsref/met_form_reset.asp
         incomeForm.reset();
     });
 
@@ -275,15 +259,14 @@ if (currentPage === "index") {
             return;
         }
 
-        expenseAmountValue = Number(expenseAmountValue);
-        /*
-            SUCCESS - ADD NEW TABLE RECORD
-        */
-        let delButton = document.createElement("button");
-        insertTableRecord(transaction, expenseTypeValue, expenseAmountValue, delButton);
+        expenseAmountValue = Number(expenseAmountValue); // Assuming the user has entered a valid number based on validation tests passing.
+        
+        /* SUCCESS - ADD NEW TABLE RECORD */
+        insertTableRecord(transaction, expenseTypeValue, expenseAmountValue);
         updateTotalExpenses(expenseAmountValue);
         updateRemainingBalance();
 
+        // https://www.w3schools.com/jsref/met_form_reset.asp
         expenseForm.reset();
     });
 
@@ -296,12 +279,14 @@ if (currentPage === "index") {
     }
 
     function isValidAmountEntered(amt) {
+        // https://www.w3schools.com/jsref/jsref_trim_string.asp
         if (amt.trim() === "") {
             return "Income amount cannot be blank"
         }
 
         let num = Number(amt);
 
+        // https://www.w3schools.com/jsref/jsref_isnan.asp
         if (isNaN(num)) {
             return "This is not a valid income number";
         }
@@ -314,6 +299,7 @@ if (currentPage === "index") {
     }
 
     function isValidDateEntered(date) {
+        // https://www.w3schools.com/jsref/jsref_trim_string.asp
         if (date.trim() == "") {
             return "Please enter a value for the date";
         }
@@ -334,9 +320,9 @@ if (currentPage === "index") {
             return "Date value must be in the form DD/MM/YY separated by a backslash";
         }
 
-        /* https://www.w3schools.com/jsref/jsref_substring.asp */
-        let dateArray = [];
+        let dateArray = []; // Assuming date is now in correct format i.e. DD/MM/YY
 
+        /* https://www.w3schools.com/jsref/jsref_substring.asp */
         let day = date.substring(0, 2);
         let month = date.substring(3, 5);
         let year = date.substring(6);
@@ -360,6 +346,7 @@ if (currentPage === "index") {
     }
 
     function isValidNameEntered(name) {
+        // https://www.w3schools.com/jsref/jsref_trim_string.asp
         if (name.trim() === "") {
             return "Name of the expenditure cannot be blank";
         }
@@ -383,7 +370,6 @@ if (currentPage === "index") {
 
     function insertTableRecord(transaction, type, amt) {
         transactionRecords.push({ t: transaction, tp: type, a: amt });
-        console.log(transactionRecords);
 
         updateTableRecords();
         updateLocalStorage();
@@ -402,13 +388,14 @@ if (currentPage === "index") {
         for (let i = 0; i < arrayLen; i++) {
             let record = document.createElement("tr");
 
+            // https://www.w3schools.com/jsref/prop_html_innerhtml.asp
             record.innerHTML = `
                 <td>${transactionRecords[i].t}</td>
                 <td>${transactionRecords[i].tp}</td>
                 <td>€${transactionRecords[i].a}</td>
                 <td></td>`;
 
-            let delButton = document.createElement("button");
+            let delButton = document.createElement("button"); // Workaround to add button to last <td> element. Cannot add button into tags
             delButton.textContent = "Delete";
 
             delButton.addEventListener("click", function (e) {
@@ -423,17 +410,18 @@ if (currentPage === "index") {
                 transactionRecords.splice(i, 1);
 
                 updateLocalStorage();
-                updateTableRecords();
+                updateTableRecords(); // Only triggered when user clicks delete as table will have to be updated
             });
 
-            record.lastElementChild.appendChild(delButton);
+            // https://www.w3schools.com/jsref/prop_element_lastelementchild.asp
+            record.lastElementChild.appendChild(delButton); // Grabs empty <td> from record and adds delete button
             table.appendChild(record);
         }
     }
 
     // LOCAL STORAGE
     const updateLocalStorage = () => localStorage.setItem("User_Transactions", JSON.stringify(transactionRecords));
-    const resetLocalStorage = () => localStorage.setItem(("Time_Remaining", 0))
+    const resetLocalStorage = () => localStorage.setItem(("Time_Remaining", 0));
 
     // TOTAL INCOME
     const updateTotalIncome = (amt) => totalIncomeValue.textContent = `€${Number(totalIncome = totalIncome + amt)}`;
@@ -444,8 +432,11 @@ if (currentPage === "index") {
     const decreaseTotalExpenses = (amt) => totalExpensesValue.textContent = `€${Number(totalExpenses = totalExpenses - amt)}`;
 
     // REMAINING BALANCE
-    const updateRemainingBalance = () => remainingBalanceValue.textContent = `€${Number(totalIncome - totalExpenses)}`;
+    const updateRemainingBalance = () => {
+        remainingBalanceValue.textContent = `€${Number(totalIncome - totalExpenses)}`;
 
+        remainingBalanceValue.style.color = remainingBalance < 0 ? "red" : "white";
+    }
 
     reset.addEventListener("click", function (e) {
         transactionRecords = [];
@@ -468,6 +459,7 @@ if (currentPage === "index") {
         typeFilter.style.display = "none";
         costFilter.style.display = "none";
 
+        // https://www.w3schools.com/jsref/prop_radio_checked.asp
         typeSelectionRadio.forEach(record => record.checked = false);
         priceSelectionRadio.forEach(record => record.checked = false);
 
@@ -501,14 +493,12 @@ if (currentPage === "index") {
             }
         }
 
-        console.log(updatedArray);
         displayFilterTable(updatedArray);
     }
 
     function populateCostArray(cost) {
         // https://www.geeksforgeeks.org/javascript/how-to-clone-an-array-in-javascript/
-        let updatedArray = [...transactionRecords];
-        console.log(updatedArray);
+        let updatedArray = [...transactionRecords]; // Cloning array so original is not affected by sorting algorithm
 
         // IMPLEMENT SELECTION SORT ALGORITHM (USING OOP AS REFERENCE)
         for (let i = 0; i < updatedArray.length; i++) {
@@ -531,8 +521,6 @@ if (currentPage === "index") {
         } else if (cost === "lowest") {
             displayFilterTable(updatedArray);
         }
-
-        console.log(updatedArray);
     }
 
     function displayFilterTable(array) {
@@ -598,7 +586,7 @@ if (currentPage === "index") {
     displayName.textContent = userName;
 
     const tableTitle = ["Income", "Expenditure", "Remaining Balance"];
-    const barColors = ["#b91d47","#00aba9","#2b5797"];
+    const barColors = ["#b91d47","#1e7145","#2b5797"];
 
     let income = 0;
     let expenses = 0;
@@ -629,7 +617,7 @@ if (currentPage === "index") {
     let transactions;
 
     try {
-        transactions = JSON.parse(localStorage.getItem("User_Transactions"));
+        transactions = JSON.parse(localStorage.getItem("User_Transactions")) || [];
 
         for (let i = 0; i < transactions.length; i++) {
             if (transactions[i].t === "Income") {
@@ -640,8 +628,8 @@ if (currentPage === "index") {
         }
 
         remaining = income - expenses;
-        values = [income, expenses, remaining];
-
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR
+        values = [income, expenses, remaining || 100];
     } catch (err) {
         console.error("Error loading chart data:", err);
         chartData = { labels: [], values: [] }; // fallback
@@ -651,7 +639,7 @@ if (currentPage === "index") {
     const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
-    type: "doughnut",
+    type: "pie",
     data: {
         labels: tableTitle,
         datasets: [{
@@ -660,14 +648,16 @@ if (currentPage === "index") {
         }]
     },
     options: {
+        // https://www.chartjs.org/docs/latest/configuration/responsive.html
         responsive: true,
         maintainAspectRatio: false,
+
         plugins: {
         legend: {display:true},
         title: {
             display: true,
             text: "Budget Breakdown",
-            font: {size:16}
+            font: {size: 20} 
             }
          }
         }

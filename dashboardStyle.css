@@ -15,6 +15,56 @@ body {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.container{
+    padding: 2em;
+    width: 80vw;
+    height: 40vw;
+    text-align: center;
+}
+
+.container h1, .container h2 {
+    color: var(--body-heading-text);
+}
+
+.container h1{
+    font-size: 8vw;
+    margin: 2vw;
+}
+
+.container h2 {
+    font-size: 5vw;
+    margin: 2vw;
+}
+
+.container input[type = "text"] {
+    border: 1px solid var(--input-outline);
+    width: 50vw;
+    height: 4vw;
+    box-shadow: 1px 1px 1px 1px var(--input-outline);
+    font-size: 2vw;
+}
+
+.container input[type = "submit"] {
+    background-color: var(--button);
+    color: var(--white-text);
+    padding: 2vw;
+    width: 20vw;
+    margin-top: 2vw;
+    border: none;
+    border-radius: 0.5em;
+    font-size: 2vw;
+}
+
+.container input[type = "submit"]:hover {
+    background-color: var(--dark-background);
+    transition: 0.2s ease-in;
+}
+
+#errorOutput {
+    color: red;
+    font-size: 2vw;
+}
+
 header {
     background-color: var(--body-heading-text);
     color: var(--white-text);
@@ -295,6 +345,7 @@ fieldset {
     background-color: var(--body-heading-text);
     padding: 2em;
    text-align: left;
+   margin-top: 2em;
 }
 
 .githubLink button {
@@ -323,6 +374,7 @@ fieldset {
 .pieChartDisplay {
     text-align: left;
     width: 100%;
+    margin-top: 2em;
 }
 
 canvas {
