@@ -321,7 +321,6 @@ fieldset {
 }
 
 .pieChartDisplay {
-    /* background-color: red; */
     text-align: left;
     width: 100%;
 }
@@ -331,6 +330,19 @@ canvas {
     margin-left: 0;
     width: 60vw;
     height: 40em;
+}
+
+.thankYou {
+    padding: 2em;
+    font-size: 2vw;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+.thankYou button, .thankYou p {
+    text-align: center;
 }
 
 

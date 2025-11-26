@@ -1,9 +1,5 @@
 const currentPage = document.body.dataset.page;
 
-const userName = localStorage.getItem("User_Name");
-const displayName = document.getElementById("userNameDisplay");
-displayName.textContent = userName;
-
 function startTimer(duration, display) {
         var timer = duration, minutes, seconds;
 
@@ -22,6 +18,7 @@ function startTimer(duration, display) {
                 clearInterval(countdown);
                 display.textContent = "00:00";
                 localStorage.removeItem("Time_Remaining");
+                document.location.href = "thankYou.html";
             } else {
                 localStorage.setItem("Time_Remaining", timer);
             }
@@ -80,9 +77,9 @@ if (currentPage === "index") {
     }
 } else if (currentPage === "dashboard") {
     // GETTING THE USERS NAME
-    // const userName = localStorage.getItem("User_Name");
-    // const displayName = document.getElementById("userNameDisplay");
-    // displayName.textContent = userName;
+    const userName = localStorage.getItem("User_Name");
+    const displayName = document.getElementById("userNameDisplay");
+    displayName.textContent = userName;
 
     // MAIN DASHBOARD FIGURES
     let totalIncome = 0;
@@ -596,14 +593,13 @@ if (currentPage === "index") {
         });
     });
 } else if (currentPage === "analytics") {
-    // const userName = localStorage.getItem("User_Name");
-    // const displayName = document.getElementById("userNameDisplay");
-    // displayName.textContent = userName;
+    const userName = localStorage.getItem("User_Name");
+    const displayName = document.getElementById("userNameDisplay");
+    displayName.textContent = userName;
 
     const tableTitle = ["Income", "Expenditure", "Remaining Balance"];
     const barColors = ["#b91d47","#00aba9","#2b5797"];
 
-    let transactions = JSON.parse(localStorage.getItem("User_Transactions"));
     let income = 0;
     let expenses = 0;
 
@@ -622,7 +618,19 @@ if (currentPage === "index") {
         }
     }
 
-    if (transactions) {
+    if (!localStorage.getItem("User_Transactions")) {
+        const sampleData = {
+            labels: ["Income", "Expenditure", "Remaining Balance"],
+            values: [0, 0, 100]
+        };
+        localStorage.setItem("chartData", JSON.stringify(sampleData));
+    }
+
+    let transactions;
+
+    try {
+        transactions = JSON.parse(localStorage.getItem("User_Transactions"));
+
         for (let i = 0; i < transactions.length; i++) {
             if (transactions[i].t === "Income") {
                 income += transactions[i].a
@@ -633,8 +641,10 @@ if (currentPage === "index") {
 
         remaining = income - expenses;
         values = [income, expenses, remaining];
-    } else {
-        values = [0, 0, 100]
+
+    } catch (err) {
+        console.error("Error loading chart data:", err);
+        chartData = { labels: [], values: [] }; // fallback
     }
 
     // https://www.w3schools.com/js/tryit.asp?filename=trychartjs_doughnut
@@ -656,10 +666,9 @@ if (currentPage === "index") {
         legend: {display:true},
         title: {
             display: true,
-            text: "World Wine Production 2018",
+            text: "Budget Breakdown",
             font: {size:16}
+            }
          }
         }
-    }
-    });
-}
+    })};
