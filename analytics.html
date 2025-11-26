@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Budget Manager Pro Analytics</title>
     <link rel="stylesheet" href="dashboardStyle.css">
     <script src="dashboard.js" defer></script>
-    <script src="analytics.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
 </head>
 
-<body>
+<body data-page = "analytics">
     <header>
         <h2>Hi, <span id="userNameDisplay"></span>!</h2>
 
@@ -25,13 +25,16 @@
     </header>
 
     <main>
-        <section></section>
             <div class="burgerMenu">
                 <ul class="hiddenMenu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="dashboard.html">Data Analytics</a></li>
                 </ul>
             </div>
+        </section>
+
+        <section class="pieChartDisplay">
+            <canvas id="myChart"></canvas>
         </section>
     </main>
 </body>

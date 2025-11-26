@@ -320,6 +320,19 @@ fieldset {
     margin-top: 2em;
 }
 
+.pieChartDisplay {
+    /* background-color: red; */
+    text-align: left;
+    width: 100%;
+}
+
+canvas {
+    margin-right: 0;
+    margin-left: 0;
+    width: 60vw;
+    height: 40em;
+}
+
 
 @media (MAX-WIDTH: 820px) {
     .headerMenu {
@@ -359,6 +372,12 @@ fieldset {
 
     .incomeInput, .expenseInput {
         width: 80%;
+    }
+
+    canvas {
+        margin-right: 0;
+        margin-left: 0;
+        width: 50%;
     }
 }
 
@@ -442,5 +461,12 @@ fieldset {
 
     .githubText{
        display: none;
+    }
+
+    canvas {
+        margin-right: 0;
+        margin-left: 0;
+        width: 50vw;
+        height: 30em;
     }
 }
