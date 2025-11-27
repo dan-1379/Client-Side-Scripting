@@ -386,7 +386,7 @@ canvas {
 
 .thankYou {
     padding: 2em;
-    font-size: 2vw;
+    font-size: 2.5vw;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -395,6 +395,24 @@ canvas {
 
 .thankYou button, .thankYou p {
     text-align: center;
+}
+
+.thankYou button {
+    background-color: var(--white-text);
+    padding: 1em;
+    border-radius: 0.3em;
+    width: 15vw;
+    text-align: center;
+}
+
+.thankYou button a {
+    text-decoration: none;
+    color: var(--dark-background);
+}
+
+.thankYou button a:hover {
+    color: var(--button);
+    transition: 0.2s ease-in-out;
 }
 
 
