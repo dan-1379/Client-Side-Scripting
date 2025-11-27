@@ -660,9 +660,9 @@ if (currentPage === "index") {
             }
         }
 
-        remaining = income - expenses;
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR
-        values = [income, expenses, remaining || 100];
+        remaining = (income - expenses) < 0 ? 0 : income - expenses;
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing
+        values = [income, expenses, remaining ?? 100];
     } catch (err) {
         console.error("Error loading chart data:", err);
         chartData = { labels: [], values: [] }; // fallback
