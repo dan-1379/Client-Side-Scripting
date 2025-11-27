@@ -102,6 +102,7 @@ if (currentPage === "index") {
     // INCOME FORM ELEMENTS
     let incomeForm = document.getElementById("incomeForm");
     let incomeTypeSelect = document.getElementById("incomeOptions");
+    let incomeDate = document.getElementById("incomeDate");
     let incomeValue = document.getElementById("incomeValue");
     let incomeError = document.getElementById("incomeTypeError");
 
@@ -196,14 +197,21 @@ if (currentPage === "index") {
 
         let incomeType = incomeTypeSelect.value;
         let incomeAmount = incomeValue.value;
+        let dateValue = incomeDate.value;
         let transaction = "Income";
 
         removeErrorMessages(incomeError);
         let checkTypeSelected = isValidTypeSelected(incomeType);
+        let checkIncomeDateEntered = isValidDateEntered(dateValue);
         let checkIncomeEntered = isValidAmountEntered(incomeAmount);
 
         if (checkTypeSelected !== true) {
             constructErrorMessage(checkTypeSelected, incomeError);
+            return;
+        }
+
+        if (checkIncomeDateEntered !== true) {
+            constructErrorMessage(checkIncomeDateEntered, incomeError);
             return;
         }
 
@@ -215,7 +223,7 @@ if (currentPage === "index") {
         incomeAmount = Number(incomeAmount); // Assuming the user has entered a valid number based on validation tests passing.
 
         /* SUCCESS - ADD NEW TABLE RECORD */
-        insertTableRecord(transaction, incomeType, incomeAmount);
+        insertTableRecord(transaction, incomeType, incomeAmount, dateValue);
         updateTotalIncome(incomeAmount);
         updateRemainingBalance();
 
@@ -262,7 +270,7 @@ if (currentPage === "index") {
         expenseAmountValue = Number(expenseAmountValue); // Assuming the user has entered a valid number based on validation tests passing.
         
         /* SUCCESS - ADD NEW TABLE RECORD */
-        insertTableRecord(transaction, expenseTypeValue, expenseAmountValue);
+        insertTableRecord(transaction, expenseTypeValue, expenseAmountValue, expenseDateValue);
         updateTotalExpenses(expenseAmountValue);
         updateRemainingBalance();
 
@@ -311,13 +319,13 @@ if (currentPage === "index") {
         let dashCount = 0;
 
         for (let i = 0; i < date.length; i++) {
-            if (date[i] === "/") {
+            if (date[i] === "/" && (i== 2 || i == 5)) {
                 dashCount++;
             }
         }
 
         if (dashCount != 2) {
-            return "Date value must be in the form DD/MM/YY separated by a backslash";
+            return "Date value must be in the form DD/MM/YY separated by a forward slash";
         }
 
         let dateArray = []; // Assuming date is now in correct format i.e. DD/MM/YY
@@ -338,8 +346,29 @@ if (currentPage === "index") {
             }
         });
 
+        let dayAsNum = Number(day);
+        let monthAsNum = Number(month);
+        let yearAsNum = Number(year);
+
+        const DAYSINTHEYEAR = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        const MONTHS_IN_YEAR = 12;
+        
+        let matchMonthToDaysInMonth = DAYSINTHEYEAR[monthAsNum - 1];
+
         if (valid == false) {
             return "Not a valid date!";
+        }
+
+        if (dayAsNum < 1 || dayAsNum > matchMonthToDaysInMonth) {
+            return "Day of the month must be a valid day!"
+        }
+
+        if (monthAsNum < 1 || monthAsNum > MONTHS_IN_YEAR) {
+            return "Month of the year must be a valid month!"
+        }
+
+        if (yearAsNum !== 25) {
+            return "Transaction must be from this year!";
         }
 
         return true;
@@ -368,8 +397,8 @@ if (currentPage === "index") {
         return true;
     }
 
-    function insertTableRecord(transaction, type, amt) {
-        transactionRecords.push({ t: transaction, tp: type, a: amt });
+    function insertTableRecord(transaction, type, amt, date) {
+        transactionRecords.push({ t: transaction, tp: type, a: amt, d: date });
 
         updateTableRecords();
         updateLocalStorage();
@@ -378,6 +407,7 @@ if (currentPage === "index") {
     function updateTableRecords() {
         table.innerHTML = `<tr>
                             <th>Transaction</th>
+                            <th>Date</th>
                             <th>Name</th>
                             <th>Amount</th>
                             <th>Option</th>
@@ -391,6 +421,7 @@ if (currentPage === "index") {
             // https://www.w3schools.com/jsref/prop_html_innerhtml.asp
             record.innerHTML = `
                 <td>${transactionRecords[i].t}</td>
+                 <td>${transactionRecords[i].d}</td>
                 <td>${transactionRecords[i].tp}</td>
                 <td>€${transactionRecords[i].a}</td>
                 <td></td>`;
@@ -452,6 +483,8 @@ if (currentPage === "index") {
         remainingBalanceValue.textContent = "€0";
 
         localStorage.removeItem("User_Transactions");
+        localStorage.removeItem("User_Name");
+        document.location.href = "index.html";
     });
 
     filterButton.addEventListener("click", function () {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dashboardStyle.css">
+    <link rel="stylesheet" href="src/style/dashboardStyle.css">
     <!--
         * Title: fa fa-github
         * Author: W3 Schools
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- END OF REFERENCED CONTENT -->
     <title>Budget Manager Pro Dashboard</title>
-    <script src="dashboard.js" defer></script>
+    <script src="src/script/dashboard.js" defer></script>
 
     <!--
         * Title: Logo Maker
@@ -41,7 +41,6 @@
 
 <body data-page = "dashboard">
     <header>
-
         <h2>Hi, <span id="userNameDisplay"></span>!</h2>
 
         <ul class="headerMenu">
@@ -95,7 +94,8 @@
                         <option value="Investments">Investments</option>
                         <option value="Other">Other</option>
                     </select>
-
+                    <input type="text" name="incomeDate" id="incomeDate"
+                            placeholder="Enter Income Date DD/MM/YY">
                     <input type="text" name="incomeInput" id="incomeValue" placeholder="Enter Income">
 
                     <input type="submit" value="Add Income">
@@ -178,6 +178,7 @@
                 <table id="transactionTable">
                     <tr>
                         <th>Transaction</th>
+                        <th>Date</th>
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Option</th>
