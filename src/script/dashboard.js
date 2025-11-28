@@ -221,9 +221,10 @@ if (currentPage === "index") {
         }
 
         incomeAmount = Number(incomeAmount); // Assuming the user has entered a valid number based on validation tests passing.
+        let formattedDate = formatDate(dateValue);
 
         /* SUCCESS - ADD NEW TABLE RECORD */
-        insertTableRecord(transaction, incomeType, incomeAmount, dateValue);
+        insertTableRecord(transaction, incomeType, incomeAmount, formattedDate);
         updateTotalIncome(incomeAmount);
         updateRemainingBalance();
 
@@ -268,9 +269,10 @@ if (currentPage === "index") {
         }
 
         expenseAmountValue = Number(expenseAmountValue); // Assuming the user has entered a valid number based on validation tests passing.
+        let formattedDate = formatDate(expenseDateValue);
         
         /* SUCCESS - ADD NEW TABLE RECORD */
-        insertTableRecord(transaction, expenseTypeValue, expenseAmountValue, expenseDateValue);
+        insertTableRecord(transaction, expenseTypeValue, expenseAmountValue, formattedDate);
         updateTotalExpenses(expenseAmountValue);
         updateRemainingBalance();
 
@@ -372,6 +374,20 @@ if (currentPage === "index") {
         }
 
         return true;
+    }
+
+    function formatDate(date) {
+        const MONTHS_OF_YEAR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        
+        // https://www.w3schools.com/jsref/jsref_split.asp
+        let dateArray = date.split("/");
+        let day = dateArray[0];
+        let month = dateArray[1];
+        let year = dateArray[2];
+
+        let monthName = MONTHS_OF_YEAR[Number(month) - 1];
+
+        return `${day} ${monthName} ${year}`;
     }
 
     function isValidNameEntered(name) {
@@ -639,14 +655,6 @@ if (currentPage === "index") {
         }
     }
 
-    if (!localStorage.getItem("User_Transactions")) {
-        const sampleData = {
-            labels: ["Income", "Expenditure", "Remaining Balance"],
-            values: [0, 0, 100]
-        };
-        localStorage.setItem("chartData", JSON.stringify(sampleData));
-    }
-
     let transactions;
 
     try {
@@ -660,9 +668,13 @@ if (currentPage === "index") {
             }
         }
 
-        remaining = (income - expenses) < 0 ? 0 : income - expenses;
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing
-        values = [income, expenses, remaining ?? 100];
+        if (transactions.length == 0) {
+            values = [33, 33, 33]
+        } else {
+            remaining = (income - expenses) < 0 ? 0 : income - expenses;
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing
+            values = [income, expenses, remaining ?? 100];
+        }
     } catch (err) {
         console.error("Error loading chart data:", err);
         chartData = { labels: [], values: [] }; // fallback
