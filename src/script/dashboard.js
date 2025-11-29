@@ -500,6 +500,7 @@ if (currentPage === "index") {
 
         localStorage.removeItem("User_Transactions");
         localStorage.removeItem("User_Name");
+        localStorage.removeItem("Time_Remaining");
         document.location.href = "index.html";
     });
 
