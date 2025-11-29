@@ -397,13 +397,57 @@ canvas {
     height: 40em;
 }
 
+.thankYouBody {
+    /*******************************************************************************
+    * Title: The Importance of Having a Personal Expense Tracker
+    * Author: Jesmary K J
+    * Site: LinkedIn
+    * Date: 2025
+    * Code Version: -
+    * Availability: https://media.licdn.com/dms/image/v2/D5612AQGplp7JKG6Iiw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1673950361361?e=2147483647&v=beta&t=L4d5P81GijVgU4u1yJtFLVsIqATkfWTrymEPSd_C6_o
+    * Accessed: 29 Nov 25
+    * Modified: No modifications made. Budget image for welcome page taken from article.
+    *******************************************************************************/
+    background-image: url("https://media.licdn.com/dms/image/v2/D5612AQGplp7JKG6Iiw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1673950361361?e=2147483647&v=beta&t=L4d5P81GijVgU4u1yJtFLVsIqATkfWTrymEPSd_C6_o");
+    /* END OF REFERENCED CONTENT */
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .thankYou {
     padding: 2em;
     font-size: 2.5vw;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 2em;
     width: 60%;
+
+    /*******************************************************************************
+    * Title: Glassmorphism CSS Generator
+    * Author: CSS Glass
+    * Site: https://css.glass
+    * Date: 2025
+    * Code Version: -
+    * Availability: https://css.glass
+    * Accessed: 29 Nov 25
+    * Modified: No modifications made. Using to create glass effect on container.
+    *******************************************************************************/
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.0px);
+    -webkit-backdrop-filter: blur(3.0px);
+    border: 1px solid rgba(255, 255, 255, 0.39);
+    /* END OF REFERENCED CONTENT */
+}
+
+.thankYou:hover {
+    transition: 0.5s ease-in-out;
+    backdrop-filter: blur(6.0px);
+    -webkit-backdrop-filter: blur(6.0px);
 }
 
 .thankYou button, .thankYou p {
@@ -468,6 +512,10 @@ canvas {
     .incomeInput, .expenseInput {
         width: 80%;
     }
+
+    .githubText{
+        display: none;
+     }
 
     canvas {
         margin-right: 0;

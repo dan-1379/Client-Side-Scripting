@@ -59,12 +59,33 @@ if (currentPage === "index") {
     });
 
     function isValidInput(inputType) {
-        if (inputType === "") {
+        if (inputType.trim() === "") {
             return "No name entered";
         }
 
         if (inputType.length < 2 || inputType.length > 20) {
             return "Name must be between 2 and 20 characters inclusive";
+        }
+
+        /*******************************************************************************
+        * Title: JavaScript - String Contains Only Alphabetic Characters or Not
+        * Author: Amit Kumar Kohli
+        * Site: https://www.geeksforgeeks.org
+        * Date: 2025
+        * Code Version: -
+        * Availability: https://www.geeksforgeeks.org/javascript/javascript-program-to-check-if-a-string-contains-only-alphabetic-characters/
+        * Accessed: 29 Nov 25
+        * Modified: No modifications made. Using regular expression to validate user name input to ensure
+        *           only letters (uppercase and lowercase) are entered.
+        *******************************************************************************/
+        let isAllAlphabetic = /^[A-Za-z ]+$/.test(inputType); // Utilizing regEx for the purposes of pattern matching
+                                                              // ^ - start of string (nothing can come before this)
+                                                              // + - one or more
+                                                              // $ - end of string (nothing can come after this)
+        /* END OF REFERENCED CONTENT */
+
+        if (!isAllAlphabetic) {
+            return "Name must only contain letters A - Z, uppercase and lowercase";
         }
 
         return true;
