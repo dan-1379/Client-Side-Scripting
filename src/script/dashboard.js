@@ -135,6 +135,11 @@ if (currentPage === "index") {
     let expenseValue = document.getElementById("expenseAmount");
     let expenseError = document.getElementById("expenseTypeError");
 
+    // SEARCH FORM ELEMENTS
+    let searchForm = document.getElementById("searchForm");
+    let searchInput = document.getElementById("tableSearch");
+    let searchErrorOutput = document.getElementById("searchTableError");
+
     // FILTER BUTTON ELEMENTS
     let filterButton = document.getElementById("filterButton");
     let filter = document.getElementById("filterSelect");
@@ -555,6 +560,57 @@ if (currentPage === "index") {
         }
     });
 
+    searchForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        removeErrorMessages(searchErrorOutput);
+        let searchInputValue = searchInput.value;
+
+        if (searchInputValue.trim() === "") {
+            updateTableRecords();
+            return;
+        }
+        let checkSearchValue = isValidSearchEntry(searchInputValue);
+
+        if (checkSearchValue !== true) {
+            constructErrorMessage(checkSearchValue, searchErrorOutput);
+            return;
+        }
+
+        let searchResults = populateSearchArray(searchInputValue);
+        displayFilterTable(searchResults);
+        searchForm.reset();
+    });
+
+    function isValidSearchEntry(entry) {
+        // REG EXPRESSION TO TEST THAT ONLY LETTERS, NUMBERS AND SPACES ARE ENTERED
+        let isValid = /^[A-Za-z0-9 ]+$/.test(entry);
+
+        if (!isValid) {
+            return "Not a valid search entry. Please try again.";
+        }
+
+        return true;
+    }
+
+    function populateSearchArray(value) {
+        let searchResultsArray = [];
+
+        for (let i = 0; i < transactionRecords.length; i++) {
+            let row = transactionRecords[i];
+
+            // https://www.geeksforgeeks.org/javascript/how-to-iterate-over-a-javascript-object/
+            for (let key in row) {
+                if (String(row[key]) === value) { // STRING ALLOWS COMPARISON TO ALL VALUES INCLUDING NUM VALUES
+                    searchResultsArray.push(row);
+                    console.log(searchResultsArray);
+                }
+            }
+        }
+
+        return searchResultsArray;
+    }
+
     function populateTypeArray(type) {
         let updatedArray = [];
 
@@ -597,6 +653,7 @@ if (currentPage === "index") {
     function displayFilterTable(array) {
         table.innerHTML = `<tr>
                             <th>Transaction</th>
+                            <th>Date</th>
                             <th>Name</th>
                             <th>Amount</th>
                             <th>Option</th>
@@ -607,6 +664,7 @@ if (currentPage === "index") {
 
             record.innerHTML = `
                 <td>${array[i].t}</td>
+                <td>${array[i].d}</td>
                 <td>${array[i].tp}</td>
                 <td>€${array[i].a}</td>
                 <td></td>`;

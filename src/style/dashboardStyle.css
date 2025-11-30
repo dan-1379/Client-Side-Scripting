@@ -298,6 +298,41 @@ table button:hover {
     transition: 0.5s ease-in-out;
 }
 
+.tableError {
+    color: red;
+}
+
+.searchTable form {
+    display: flex;
+    align-items: center;
+}
+
+.searchTable form input {
+    margin: 0;
+    border: 1px solid var(--input-outline);
+    width: 30vw;
+    height: 2.5vw;
+    box-shadow: 1px 1px 1px 1px var(--input-outline);
+    font-size: 1vw;
+}
+
+.searchTable button {
+    background-color: var(--button);
+    height: 2.5vw;
+    margin-right: 2em;
+}
+
+.searchTable button i {
+    color: var(--white-text);
+    font-size: 2em;
+}
+
+.filter-Button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .filterButton {
     background-color: var(--button);
     color: var(--white-text);
@@ -486,6 +521,10 @@ canvas {
     .githubLink {
        text-align: center;
     }
+
+    .searchTable {
+        display: none;
+    }
 }
 
 @media (MAX-WIDTH: 600px) {
@@ -521,6 +560,10 @@ canvas {
         margin-right: 0;
         margin-left: 0;
         width: 50%;
+    }
+
+    .filter-Button {
+        flex-direction: column;
     }
 }
 
