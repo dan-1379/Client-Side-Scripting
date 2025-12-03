@@ -8,7 +8,9 @@ const currentPage = document.body.dataset.page;
  * Code Version: edited Mar 11, 2021 at 22:06
  * Availability: https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
  * Accessed: 26 November 2025
- * Modified: Function to decrement timer. No modifications made.
+ * Modified: Modified the if statement within the timer to clear the timer, set the timer to 0, remove the time from 
+ *           local storage and bring the user to the thank you page once the timer has elapsed.
+ *           Otherwise, Update the local storage every 1000ms
  *******************************************************************************/
 function startTimer(duration, display) {
         var timer = duration, minutes, seconds;
@@ -25,6 +27,7 @@ function startTimer(duration, display) {
             timer--;
 
             if (timer < 0) {
+                // https://www.w3schools.com/jsref/met_win_clearinterval.asp
                 clearInterval(countdown);
                 display.textContent = "00:00";
                 localStorage.removeItem("Time_Remaining");
@@ -505,11 +508,7 @@ if (currentPage === "index") {
     const decreaseTotalExpenses = (amt) => totalExpensesValue.textContent = `€${Number(totalExpenses = totalExpenses - amt)}`;
 
     // REMAINING BALANCE
-    const updateRemainingBalance = () => {
-        remainingBalanceValue.textContent = `€${Number(totalIncome - totalExpenses)}`;
-
-        remainingBalanceValue.style.color = remainingBalance < 0 ? "red" : "white";
-    }
+    const updateRemainingBalance = () => remainingBalanceValue.textContent = `€${Number(totalIncome - totalExpenses)}`;
 
     reset.addEventListener("click", function (e) {
         transactionRecords = [];
