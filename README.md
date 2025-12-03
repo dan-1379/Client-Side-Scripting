@@ -11,10 +11,15 @@ A responsive website built with HTML, CSS and JavaScript that simulates a budget
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 ## Screenshots
-<img width="1916" height="929" alt="image" src="https://github.com/user-attachments/assets/e0e9a0da-6c6c-413c-974f-2955ce8b93e5" />
-<img width="1905" height="934" alt="image" src="https://github.com/user-attachments/assets/8354298f-4f5e-4184-81d9-9a7a46f8253a" />
-<img width="1905" height="706" alt="image" src="https://github.com/user-attachments/assets/d2130ce2-804b-4da7-83c7-5f2397bc2106" />
-<img width="1916" height="914" alt="image" src="https://github.com/user-attachments/assets/2156aaaf-3107-456c-aba8-827f65532b31" />
+<img width="1919" height="953" alt="image" src="https://github.com/user-attachments/assets/a963b9da-822d-4970-8eb2-599fcebea142" />
+
+<img width="1899" height="953" alt="image" src="https://github.com/user-attachments/assets/ec7aee16-9912-453c-9ad2-76c1e4237270" />
+
+<img width="1900" height="741" alt="image" src="https://github.com/user-attachments/assets/7231eb91-afd9-4c25-a451-695c6e9a4411" />
+
+<img width="1897" height="947" alt="image" src="https://github.com/user-attachments/assets/f791054a-421c-44a9-b626-b638fb6728b9" />
+
+<img width="1895" height="950" alt="image" src="https://github.com/user-attachments/assets/7f4ff41e-518b-41ed-bf2e-485768ed8026" />
 
 ## Run Locally
 Choose the folder where you want the project
